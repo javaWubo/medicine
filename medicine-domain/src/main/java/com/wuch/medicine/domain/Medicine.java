@@ -2,6 +2,9 @@ package com.wuch.medicine.domain;
 
 import java.util.Date;
 
+/**
+ * 药品详情类
+ */
 public class Medicine {
     private Long id;
 
