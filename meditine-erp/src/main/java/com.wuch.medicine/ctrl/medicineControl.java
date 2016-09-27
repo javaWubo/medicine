@@ -6,4 +6,7 @@ package com.wuch.medicine.ctrl;
  * @desc:
  */
 public class medicineControl {
+    public static void main(String[] args) {
+
+    }
 }
