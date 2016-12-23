@@ -27,7 +27,8 @@ public class ServiceTest {
     public void test1(){
         Medicine md = new Medicine();
         md.setCreateTime(new Date());
-        md.setExpirationTime(1);
+        md.setExpirationTime(new Date());
+        md.setExpirationNum(2);
         md.setMedicineName("阿莫");
         md.setModifyTime(new Date());
         md.setPrice(200d);

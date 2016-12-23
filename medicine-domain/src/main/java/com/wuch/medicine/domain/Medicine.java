@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * 药品详情类
  */
+
 public class Medicine {
     private Long id;
 
@@ -12,7 +13,9 @@ public class Medicine {
 
     private Date producedTime;
 
-    private Integer expirationTime;
+    private Integer expirationNum;
+
+    private Date expirationTime;
 
     private Integer status;
 
@@ -50,11 +53,19 @@ public class Medicine {
         this.producedTime = producedTime;
     }
 
-    public Integer getExpirationTime() {
+    public Integer getExpirationNum() {
+        return expirationNum;
+    }
+
+    public void setExpirationNum(Integer expirationNum) {
+        this.expirationNum = expirationNum;
+    }
+
+    public Date getExpirationTime() {
         return expirationTime;
     }
 
-    public void setExpirationTime(Integer expirationTime) {
+    public void setExpirationTime(Date expirationTime) {
         this.expirationTime = expirationTime;
     }
 

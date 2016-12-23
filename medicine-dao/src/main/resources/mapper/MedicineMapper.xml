@@ -5,7 +5,8 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="medicine_name" property="medicineName" jdbcType="VARCHAR" />
     <result column="produced_time" property="producedTime" jdbcType="TIMESTAMP" />
-    <result column="expiration_time" property="expirationTime" jdbcType="INTEGER" />
+    <result column="expiration_num" property="expirationNum" jdbcType="INTEGER" />
+    <result column="expiration_time" property="expirationTime" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="surplus_num" property="surplusNum" jdbcType="INTEGER" />
     <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, medicine_name, produced_time, expiration_time, status, surplus_num, sale_num, 
-    price, create_time, modify_time
+    id, medicine_name, produced_time, expiration_num, expiration_time, status, surplus_num,
+    sale_num, price, create_time, modify_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.wuch.medicine.domain.MedicineExample" >
     select
@@ -81,7 +82,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from medicine_detail
+    from medicine
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -90,33 +91,33 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
+    select
     <include refid="Base_Column_List" />
-    from medicine_detail
+    from medicine
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from medicine_detail
+    delete from medicine
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.wuch.medicine.domain.MedicineExample" >
-    delete from medicine_detail
+    delete from medicine
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.wuch.medicine.domain.Medicine" >
-    insert into medicine_detail (id, medicine_name, produced_time, 
-      expiration_time, status, surplus_num, 
-      sale_num, price, create_time, 
-      modify_time)
-    values (#{id,jdbcType=BIGINT}, #{medicineName,jdbcType=VARCHAR}, #{producedTime,jdbcType=TIMESTAMP}, 
-      #{expirationTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{surplusNum,jdbcType=INTEGER}, 
-      #{saleNum,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyTime,jdbcType=TIMESTAMP})
+    insert into medicine (id, medicine_name, produced_time,
+    expiration_num, expiration_time, status,
+    surplus_num, sale_num, price,
+    create_time, modify_time)
+    values (#{id,jdbcType=BIGINT}, #{medicineName,jdbcType=VARCHAR}, #{producedTime,jdbcType=TIMESTAMP},
+    #{expirationNum,jdbcType=INTEGER}, #{expirationTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+    #{surplusNum,jdbcType=INTEGER}, #{saleNum,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE},
+    #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.wuch.medicine.domain.Medicine" >
-    insert into medicine_detail
+    insert into medicine
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -126,6 +127,9 @@
       </if>
       <if test="producedTime != null" >
         produced_time,
+      </if>
+      <if test="expirationNum != null" >
+        expiration_num,
       </if>
       <if test="expirationTime != null" >
         expiration_time,
@@ -159,8 +163,11 @@
       <if test="producedTime != null" >
         #{producedTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="expirationNum != null" >
+        #{expirationNum,jdbcType=INTEGER},
+      </if>
       <if test="expirationTime != null" >
-        #{expirationTime,jdbcType=INTEGER},
+        #{expirationTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -183,13 +190,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.wuch.medicine.domain.MedicineExample" resultType="java.lang.Integer" >
-    select count(*) from medicine_detail
+    select count(*) from medicine
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update medicine_detail
+    update medicine
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=BIGINT},
@@ -200,8 +207,11 @@
       <if test="record.producedTime != null" >
         produced_time = #{record.producedTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.expirationNum != null" >
+        expiration_num = #{record.expirationNum,jdbcType=INTEGER},
+      </if>
       <if test="record.expirationTime != null" >
-        expiration_time = #{record.expirationTime,jdbcType=INTEGER},
+        expiration_time = #{record.expirationTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
@@ -227,23 +237,24 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update medicine_detail
+    update medicine
     set id = #{record.id,jdbcType=BIGINT},
-      medicine_name = #{record.medicineName,jdbcType=VARCHAR},
-      produced_time = #{record.producedTime,jdbcType=TIMESTAMP},
-      expiration_time = #{record.expirationTime,jdbcType=INTEGER},
-      status = #{record.status,jdbcType=INTEGER},
-      surplus_num = #{record.surplusNum,jdbcType=INTEGER},
-      sale_num = #{record.saleNum,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=DOUBLE},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    medicine_name = #{record.medicineName,jdbcType=VARCHAR},
+    produced_time = #{record.producedTime,jdbcType=TIMESTAMP},
+    expiration_num = #{record.expirationNum,jdbcType=INTEGER},
+    expiration_time = #{record.expirationTime,jdbcType=TIMESTAMP},
+    status = #{record.status,jdbcType=INTEGER},
+    surplus_num = #{record.surplusNum,jdbcType=INTEGER},
+    sale_num = #{record.saleNum,jdbcType=INTEGER},
+    price = #{record.price,jdbcType=DOUBLE},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.wuch.medicine.domain.Medicine" >
-    update medicine_detail
+    update medicine
     <set >
       <if test="medicineName != null" >
         medicine_name = #{medicineName,jdbcType=VARCHAR},
@@ -251,8 +262,11 @@
       <if test="producedTime != null" >
         produced_time = #{producedTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="expirationNum != null" >
+        expiration_num = #{expirationNum,jdbcType=INTEGER},
+      </if>
       <if test="expirationTime != null" >
-        expiration_time = #{expirationTime,jdbcType=INTEGER},
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -276,10 +290,11 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wuch.medicine.domain.Medicine" >
-    update medicine_detail
+    update medicine
     set medicine_name = #{medicineName,jdbcType=VARCHAR},
       produced_time = #{producedTime,jdbcType=TIMESTAMP},
-      expiration_time = #{expirationTime,jdbcType=INTEGER},
+      expiration_num = #{expirationNum,jdbcType=INTEGER},
+      expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
       surplus_num = #{surplusNum,jdbcType=INTEGER},
       sale_num = #{saleNum,jdbcType=INTEGER},
