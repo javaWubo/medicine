@@ -16,9 +16,7 @@ import java.util.Date;
  * @create: 2016-08-24 17:31
  * @desc:
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:spring-config.xml"})
-public class ServiceTest {
+public class ServiceTest extends BaseTest {
     private static final Logger LOG = LoggerFactory.getLogger(ServiceTest.class);
     @Resource
     private MedicineService medicineService;
@@ -29,7 +27,7 @@ public class ServiceTest {
         md.setCreateTime(new Date());
         md.setExpirationTime(new Date());
         md.setExpirationNum(2);
-        md.setMedicineName("阿莫");
+        md.setMedicineName("阿莫1");
         md.setModifyTime(new Date());
         md.setPrice(200d);
         md.setProducedTime(new Date());
