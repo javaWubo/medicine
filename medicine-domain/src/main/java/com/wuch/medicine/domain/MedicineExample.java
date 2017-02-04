@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class MedicineExample {
     protected String orderByClause;
 
@@ -295,6 +296,66 @@ public class MedicineExample {
             return (Criteria) this;
         }
 
+        public Criteria andExpirationNumIsNull() {
+            addCriterion("expiration_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumIsNotNull() {
+            addCriterion("expiration_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumEqualTo(Integer value) {
+            addCriterion("expiration_num =", value, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumNotEqualTo(Integer value) {
+            addCriterion("expiration_num <>", value, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumGreaterThan(Integer value) {
+            addCriterion("expiration_num >", value, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("expiration_num >=", value, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumLessThan(Integer value) {
+            addCriterion("expiration_num <", value, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumLessThanOrEqualTo(Integer value) {
+            addCriterion("expiration_num <=", value, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumIn(List<Integer> values) {
+            addCriterion("expiration_num in", values, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumNotIn(List<Integer> values) {
+            addCriterion("expiration_num not in", values, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumBetween(Integer value1, Integer value2) {
+            addCriterion("expiration_num between", value1, value2, "expirationNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andExpirationNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("expiration_num not between", value1, value2, "expirationNum");
+            return (Criteria) this;
+        }
+
         public Criteria andExpirationTimeIsNull() {
             addCriterion("expiration_time is null");
             return (Criteria) this;
@@ -305,52 +366,52 @@ public class MedicineExample {
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeEqualTo(Integer value) {
+        public Criteria andExpirationTimeEqualTo(Date value) {
             addCriterion("expiration_time =", value, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeNotEqualTo(Integer value) {
+        public Criteria andExpirationTimeNotEqualTo(Date value) {
             addCriterion("expiration_time <>", value, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeGreaterThan(Integer value) {
+        public Criteria andExpirationTimeGreaterThan(Date value) {
             addCriterion("expiration_time >", value, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andExpirationTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("expiration_time >=", value, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeLessThan(Integer value) {
+        public Criteria andExpirationTimeLessThan(Date value) {
             addCriterion("expiration_time <", value, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andExpirationTimeLessThanOrEqualTo(Date value) {
             addCriterion("expiration_time <=", value, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeIn(List<Integer> values) {
+        public Criteria andExpirationTimeIn(List<Date> values) {
             addCriterion("expiration_time in", values, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeNotIn(List<Integer> values) {
+        public Criteria andExpirationTimeNotIn(List<Date> values) {
             addCriterion("expiration_time not in", values, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeBetween(Integer value1, Integer value2) {
+        public Criteria andExpirationTimeBetween(Date value1, Date value2) {
             addCriterion("expiration_time between", value1, value2, "expirationTime");
             return (Criteria) this;
         }
 
-        public Criteria andExpirationTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andExpirationTimeNotBetween(Date value1, Date value2) {
             addCriterion("expiration_time not between", value1, value2, "expirationTime");
             return (Criteria) this;
         }
