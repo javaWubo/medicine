@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="medicine-erp:war">
+    <output-path>$PROJECT_DIR$/meditine-erp/target</output-path>
+    <root id="archive" name="medicine-erp-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="medicine-erp:war exploded" />
+    </root>
+  </artifact>
+</component>
