@@ -12,4 +12,15 @@ public class BaseController {
     public String loginPage(){
         return "login";
     }
+
+    @RequestMapping(value = "/zct")
+    public String zct(){
+        return "zct";
+    }
+
+    @RequestMapping(value = "/lf")
+    public String lf(){
+        return "lf";
+    }
+
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Unicorn Admin</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/common/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/common/css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" href="/common/css/unicorn.login.css" />
+        <script src="/common/js/jquery.min.js"></script>
+        <script src="/common/js/unicorn.login.js"></script>
+        <script src="/common/zc/ZeroClipboard.min.js"></script>
+    </head>
+    <body>
+        <div id="logo">
+           <input type="text" value="123" id="cop"/>
+            <input type="button" data-clipboard-target="cop" id="but">
+        </div>
+    </body>
+<script>
+    $(function(){
+        var clip = new ZeroClipboard(document.getElementById("but"));
+       $("#but").bind("click",function () {
+           alert("¸´ÖÆ³É¹¦£¡")
+       })
+    });
+
+</script>
+</html>

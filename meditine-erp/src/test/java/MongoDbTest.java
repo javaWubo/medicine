@@ -10,8 +10,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static sun.plugin.javascript.navig.JSType.Document;
-
 /**
  * Created by wubo5 on 2016/12/26.
  */
