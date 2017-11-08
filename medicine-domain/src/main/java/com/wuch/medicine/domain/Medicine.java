@@ -12,6 +12,8 @@ public class Medicine {
 
     private Date producedTime;
 
+    private Integer expirationNum;
+
     private Date expirationTime;
 
     private Integer status;
@@ -48,6 +50,14 @@ public class Medicine {
 
     public void setProducedTime(Date producedTime) {
         this.producedTime = producedTime;
+    }
+
+    public Integer getExpirationNum() {
+        return expirationNum;
+    }
+
+    public void setExpirationNum(Integer expirationNum) {
+        this.expirationNum = expirationNum;
     }
 
     public Date getExpirationTime() {

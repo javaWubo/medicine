@@ -49,6 +49,7 @@ public class ServiceResult<T> {
 
     @Override
     public String toString() {
+
         return "ServiceResult{" +
                 "code=" + code +
                 ", ErrorMsg='" + ErrorMsg + '\'' +
