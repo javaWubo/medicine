@@ -66,7 +66,7 @@
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
         <property name="cache" value="true" />
-        <property name="prefix" value="" />
+        <property name="prefix" value="/views/" />
         <property name="layoutUrl" value="layout.vm" />
         <property name="suffix" value=".vm" />
         <property name="contentType"><value>text/html;charset=UTF-8</value></property>

@@ -61,42 +61,7 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-<!-- springMvc -->
-  <!--<servlet>
-    <servlet-name>springpage</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/spring-config-dispatcher.xml</param-value>
-    </init-param>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>springpage</servlet-name>
-    <url-pattern>*.html</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>springpage</servlet-name>
-    <url-pattern>*.action</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>springjson</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/spring-config-json.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
 
-  <servlet-mapping>
-    <servlet-name>springjson</servlet-name>
-    <url-pattern>/json/*</url-pattern>
-  </servlet-mapping>
-
-  <welcome-file-list>
-    <welcome-file>/home.html</welcome-file>
-  </welcome-file-list>
--->
   <error-page>
     <error-code>404</error-code>
     <location>/error/404.html</location>
