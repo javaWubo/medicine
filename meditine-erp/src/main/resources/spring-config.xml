@@ -27,6 +27,8 @@
     
     <!--用户中间件接入 消费端过滤器配置 -->
     <import resource="spring/spring-config-dao.xml"/>
+
+    <import resource="spring/spring-config-es.xml"/>
     <!--
         提供java编码中访问properties文件中的配置，
         使用CustomizedPropertyConfigurer.getContextProperty()

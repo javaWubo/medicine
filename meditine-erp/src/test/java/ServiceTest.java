@@ -27,7 +27,7 @@ public class ServiceTest extends BaseTest {
         md.setCreateTime(new Date());
         md.setExpirationTime(new Date());
         md.setExpirationNum(2);
-        md.setMedicineName("阿莫1");
+        md.setMedicineName("阿莫ss");
         md.setModifyTime(new Date());
         md.setPrice(200d);
         md.setProducedTime(new Date());

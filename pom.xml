@@ -34,10 +34,13 @@
     <module>meditine-erp</module>
   </modules>
   <properties>
-    <spring.version>3.2.2.RELEASE</spring.version>
+   <!-- <spring.version>3.2.2.RELEASE</spring.version>-->
+    <spring.version>4.2.5.RELEASE</spring.version>
     <httpclient.version>4.3</httpclient.version>
     <quartz.version>1.8.6</quartz.version>
     <shardbatis.version>2.0.0D</shardbatis.version>
+    <es.version>2.1.1</es.version>
+     <spring.data.elasticsearch.version>2.0.0.RELEASE</spring.data.elasticsearch.version>
   </properties>
   <build>
     <plugins>
@@ -78,5 +81,318 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <profiles>
 
+    <profile>
+      <id>production</id>
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <excludes>
+              <exclude>important.properties</exclude>
+              <exclude>profiler.properties</exclude>
+            </excludes>
+          </resource>
+        </resources>
+      </build>
+      <properties>
+        <pop-form.version>1.0.0-SNAPSHOT</pop-form.version>
+        <!-- 开始 第一部分: 私密key配置，发布时需要运维配置，在product profile中去掉 -->
+        <!-- 结束 第一部分: 私密key配置，发布时需要运维配置，在product profile中去掉 -->
+
+        <!-- 开始 第二部分: 数据库配置，发布时需运维配置JNDI -->
+        <!-- mysql -->
+        <pop-form.jdbc.mysql.driver>com.mysql.jdbc.Driver</pop-form.jdbc.mysql.driver>
+
+        <!--<pop-form.jdbc.mysql.password>ZwFRvfM0UkDr00anLtzCX7IkPN1WFDVGHFoW20YDlJ0=</pop-form.jdbc.mysql.password>-->
+        <!--设定最大连接数-->
+        <pop-form.jdbc.maxActive>10</pop-form.jdbc.maxActive>
+        <!--初始化连接数-->
+        <pop-form.jdbc.initialSize>5</pop-form.jdbc.initialSize>
+        <!--设定最大等待时间（毫秒）-->
+        <pop-form.jdbc.maxWait>60000</pop-form.jdbc.maxWait>
+        <!--设定最大空闲连接-->
+        <pop-form.jdbc.maxIdle>8</pop-form.jdbc.maxIdle>
+        <!--最小空闲连接-->
+        <pop-form.jdbc.minIdle>5</pop-form.jdbc.minIdle>
+        <!--是否自动回收超时连接-->
+        <pop-form.jdbc.removeAbandoned>true</pop-form.jdbc.removeAbandoned>
+        <!--超时时间(以s为单位)-->
+        <pop-form.jdbc.removeAbandonedTimeout>180</pop-form.jdbc.removeAbandonedTimeout>
+        <pop-form.jdbc.timeBetweenEvictionRunsMillis>30000</pop-form.jdbc.timeBetweenEvictionRunsMillis>
+        <pop-form.jdbc.minEvictableIdleTimeMillis>180000</pop-form.jdbc.minEvictableIdleTimeMillis>
+
+        <!-- mongo -->
+        <!--<pop-form.mongo.host>192.168.147.136:50184</pop-form.mongo.host>-->
+        <!--<pop-form.mongo.dbname>pop_market</pop-form.mongo.dbname>-->
+        <!--<pop-form.mongo.username>pop_market</pop-form.mongo.username>-->
+        <!--<pop-form.mongo.password>pop_market</pop-form.mongo.password>-->
+        <pop-form.mongo.connectTimeout>60000</pop-form.mongo.connectTimeout>
+        <pop-form.mongo.socketTimeout>60000</pop-form.mongo.socketTimeout>
+
+        <!-- es -->
+        <pop-form.es.cluster-nodes>192.168.65.128:9200,192.168.65.128:9201,</pop-form.es.cluster-nodes>
+        <pop-form.es.cluster-nodes-w>192.168.65.128:9202,192.168.65.128:9200,</pop-form.es.cluster-nodes-w>
+        <pop-form.es.cluster-name>cluster-wb-1</pop-form.es.cluster-name>
+
+        <!-- 结束 第二部分: 数据库配置，发布时需运维配置JNDI -->
+
+        <!-- 开始 第三部分: 缓存等服务资源，发布时需找运维确定 -->
+        <!--cache1位置-->
+
+        <!-- jimdb -->
+        <pop-form.jimdb.url>jim://2777645968738308855/1967</pop-form.jimdb.url>
+
+        <pop-form.message.jimdb.url>jim://2766893695648947611/2188</pop-form.message.jimdb.url>
+        <!-- 结束 第三部分: 缓存等服务资源，发布时需找运维确定 -->
+
+        <!-- 开始 第四部分: 应用服务器配置，发布时需找运维确定 -->
+
+        <!-- 结束 第四部分: 应用服务器配置，发布时需找运维确定 -->
+        <!-- 开始 第五部分: 依赖的外部接口，发布时需找接口人确定 -->
+        <!--云存储 -->
+        <pop-form.jss.accessKey>dFeW9uqgNboc6QNH</pop-form.jss.accessKey>
+        <pop-form.jss.secertKey>lUH4URs2U7G4izZRrweEXVroFXCSFj5IuwUFF7Wk</pop-form.jss.secertKey>
+        <pop-form.jss.jssUrl>storage.jd.local</pop-form.jss.jssUrl>
+        <!-- 图片空间 -->
+        <pop-form.jfs.image.authCode>53ec5bb204ddf048ea089580f636b7b8</pop-form.jfs.image.authCode>
+        <!--组织架构-->
+        <pop.form.erp.hr.appCode>kkong.man</pop.form.erp.hr.appCode>
+        <pop.form.erp.hr.safeKey>48KT709QUHC928IFC766</pop.form.erp.hr.safeKey>
+        <pop.form.erp.hr.rootDeptCode>00000000</pop.form.erp.hr.rootDeptCode>
+        <!--HR 公司部门组织架构 -->
+        <pop.form.erp.hr.HrOrganizationService.alias>HR_ORGANIZATION_SERVICE_JSF</pop.form.erp.hr.HrOrganizationService.alias>
+        <!--HR 人员信息 -->
+        <pop.form.erp.hr.HrUserService.alias>HR_USER_SERVICE_JSF</pop.form.erp.hr.HrUserService.alias>
+
+        <!-- 商家中心 -->
+        <pop-vendercenter.jsf.alias>popvendercenter</pop-vendercenter.jsf.alias>
+        <pop-vendercenter.jsf.signToken>55e3beca455da8011f0f157649ffc605</pop-vendercenter.jsf.signToken>
+
+        <!-- 结束 第五部分: 依赖的外部接口，发布时需找接口人确定 -->
+        <!-- 开始 第六部分: 提供给别人的接口，发布时需通知调用人 -->
+        <!--<form.soa.jsf.alias>form-soa-${user.name}</form.soa.jsf.alias>-->
+        <!--<com.jd.jsf.timeout>3000</com.jd.jsf.timeout>-->
+        <!-- 结束 第六部分: 提供给别人的接口，发布时需通知调用人 -->
+        <!-- 开始 第七部分: 开发设置 -->
+        <!--记录用户登录信息的cookie名称-->
+        <!-- 单点登录cookie,需要webapp.domain.name的域名保持对应 -->
+        <sso.auth.cookie.domain>.jd.com</sso.auth.cookie.domain>
+
+        <!--可选配置，不需要登录可以访问的路径,以这个路径开头的地址不拦截，多个路径以逗号分割-->
+        <sso.exclude.path>/static,/rest</sso.exclude.path>
+
+        <!-- 应用的域名 -->
+        <!--<webapp.domain.name>form.jd.com</webapp.domain.name>-->
+
+        <!-- 登录地址 -->
+        <login.address>http://ssa.jd.com/sso/login</login.address>
+        <!-- 退出地址 -->
+        <!--<logout.address>http://ssa.jd.com/sso/logout?ReturnUrl=${webapp.domain.name}</logout.address>-->
+        <!-- 结束 第七部分: 开发设置 -->
+        <jsf.alias.anycall>anycall-center</jsf.alias.anycall>
+
+        <!-- 开始 第八部分: 开发框架配置，发布人修改 -->
+        <!--struts的运行模式。生产环境要改为false-->
+        <!--velocity的宏是否重新载入。生产环境要改为false-->
+        <pop-form.velocity.macro.autoreload>false</pop-form.velocity.macro.autoreload>
+        <!--velocity是否缓存-->
+        <pop-form.velocity.cache>true</pop-form.velocity.cache>
+        <!--velocity模板缓存时间-->
+        <pop-form.velocity.cache.time>10</pop-form.velocity.cache.time>
+
+        <!--文件存储的地方-->
+        <pop-form.excel.path>${pop-form.data.path}/excel</pop-form.excel.path>
+        <pop-form.data.path>/export/Data/pop-form.jd.local</pop-form.data.path>
+
+        <!-- jsf -->
+        <com.jd.jsf.check>false</com.jd.jsf.check>
+        <com.jd.jsf.lazy>false</com.jd.jsf.lazy>
+
+        <!-- jmq -->
+        <jmq.address>jmq-cluster.jd.local:80</jmq.address>
+        <jmq.user>kkong</jmq.user>
+        <jmq.password>588ECA8A</jmq.password>
+        <jmq.producer.app>kkong</jmq.producer.app>
+        <jmq.epoll>true</jmq.epoll>
+        <jmq.sendTimeout>10000</jmq.sendTimeout>
+        <jmq.connectionTimeout>10000</jmq.connectionTimeout>
+        <jmq.soTimeout>10000</jmq.soTimeout>
+        <message.jmq.distribute.open>true</message.jmq.distribute.open>
+        <message.jmq.send.open>true</message.jmq.send.open>
+        <!-- 结束 第八部分: 开发框架配置，发布人修改 -->
+
+
+      </properties>
+    </profile>
+    <profile>
+      <id>development</id>
+      <build>
+        <resources>
+          <resource>
+            <directory>src/main/resources</directory>
+            <excludes>
+              <exclude>important.properties</exclude>
+              <exclude>profiler.properties</exclude>
+            </excludes>
+          </resource>
+        </resources>
+      </build>
+      <properties>
+        <pop-form.version>1.0.0-SNAPSHOT-test</pop-form.version>
+        <!-- 开始 第一部分: 私密key配置，发布时需要运维配置，在product profile中去掉 -->
+        <!-- 结束 第一部分: 私密key配置，发布时需要运维配置，在product profile中去掉 -->
+
+        <!-- 开始 第二部分: 数据库配置，发布时需运维配置JNDI -->
+        <!-- mysql -->
+        <pop-form.jdbc.mysql.driver>com.mysql.jdbc.Driver</pop-form.jdbc.mysql.driver>
+        <pop-form.jdbc.mysql.url>jdbc:mysql://192.168.195.161:3306/pop_form?characterEncoding=UTF-8</pop-form.jdbc.mysql.url>
+        <pop-form.jdbc.mysql.username>pop-activity</pop-form.jdbc.mysql.username>
+        <pop-form.jdbc.mysql.password>pop-activity</pop-form.jdbc.mysql.password>
+        <!--设定最大连接数-->
+        <pop-form.jdbc.maxActive>10</pop-form.jdbc.maxActive>
+        <!--初始化连接数-->
+        <pop-form.jdbc.initialSize>5</pop-form.jdbc.initialSize>
+        <!--设定最大等待时间（毫秒）-->
+        <pop-form.jdbc.maxWait>60000</pop-form.jdbc.maxWait>
+        <!--设定最大空闲连接-->
+        <pop-form.jdbc.maxIdle>8</pop-form.jdbc.maxIdle>
+        <!--最小空闲连接-->
+        <pop-form.jdbc.minIdle>5</pop-form.jdbc.minIdle>
+        <!--是否自动回收超时连接-->
+        <pop-form.jdbc.removeAbandoned>true</pop-form.jdbc.removeAbandoned>
+        <!--超时时间(以s为单位)-->
+        <pop-form.jdbc.removeAbandonedTimeout>180</pop-form.jdbc.removeAbandonedTimeout>
+        <pop-form.jdbc.timeBetweenEvictionRunsMillis>30000</pop-form.jdbc.timeBetweenEvictionRunsMillis>
+        <pop-form.jdbc.minEvictableIdleTimeMillis>180000</pop-form.jdbc.minEvictableIdleTimeMillis>
+
+        <!--&lt;!&ndash; mongo &ndash;&gt;-->
+        <!--<pop-form.mongo.host>192.168.147.136:50184</pop-form.mongo.host>-->
+        <!--<pop-form.mongo.dbname>pop_market</pop-form.mongo.dbname>-->
+        <!--<pop-form.mongo.username>pop_market</pop-form.mongo.username>-->
+        <!--<pop-form.mongo.password>pop_market</pop-form.mongo.password>-->
+        <!--<pop-form.mongo.connectTimeout>60000</pop-form.mongo.connectTimeout>-->
+        <!--<pop-form.mongo.socketTimeout>60000</pop-form.mongo.socketTimeout>-->
+
+        <!-- mongo -->
+
+        <!-- <pop-form.mongo.host>192.168.147.136:50184</pop-form.mongo.host>
+         <pop-form.mongo.dbname>pop_market</pop-form.mongo.dbname>
+         <pop-form.mongo.username>pop_market</pop-form.mongo.username>
+         <pop-form.mongo.password>pop_market</pop-form.mongo.password>
+
+         <pop-form.mongo.connectTimeout>60000</pop-form.mongo.connectTimeout>
+         <pop-form.mongo.socketTimeout>60000</pop-form.mongo.socketTimeout>-->
+        <pop-form.mongo.host>192.168.147.137:50184</pop-form.mongo.host>
+        <pop-form.mongo.dbname>popcommon</pop-form.mongo.dbname>
+        <pop-form.mongo.username>popcommonwriter</pop-form.mongo.username>
+        <pop-form.mongo.password>123456</pop-form.mongo.password>
+        <pop-form.mongo.connectTimeout>60000</pop-form.mongo.connectTimeout>
+        <pop-form.mongo.socketTimeout>60000</pop-form.mongo.socketTimeout>
+        <!-- es -->
+        <pop-form.es.cluster-nodes>192.168.200.189:9303</pop-form.es.cluster-nodes>
+        <pop-form.es.cluster-nodes-w>192.168.200.190:9303</pop-form.es.cluster-nodes-w>
+        <pop-form.es.cluster-name>cluster-wb-1</pop-form.es.cluster-name>
+
+        <!-- 结束 第二部分: 数据库配置，发布时需运维配置JNDI -->
+
+        <!-- 开始 第三部分: 缓存等服务资源，发布时需找运维确定 -->
+        <!--cache1位置-->
+
+        <!-- jimdb -->
+        <pop-form.jimdb.url>jim://1803528671997086613/2</pop-form.jimdb.url>
+
+        <pop-form.message.jimdb.url>jim://1803528671997086613/2</pop-form.message.jimdb.url>
+        <!-- 结束 第三部分: 缓存等服务资源，发布时需找运维确定 -->
+
+        <!-- 开始 第四部分: 应用服务器配置，发布时需找运维确定 -->
+
+        <!-- 结束 第四部分: 应用服务器配置，发布时需找运维确定 -->
+        <!-- 开始 第五部分: 依赖的外部接口，发布时需找接口人确定 -->
+        <!--云存储 -->
+        <pop-form.jss.accessKey>dFeW9uqgNboc6QNH</pop-form.jss.accessKey>
+        <pop-form.jss.secertKey>lUH4URs2U7G4izZRrweEXVroFXCSFj5IuwUFF7Wk</pop-form.jss.secertKey>
+        <pop-form.jss.jssUrl>172.17.55.82</pop-form.jss.jssUrl>
+        <!-- 图片空间 -->
+        <pop-form.jfs.image.authCode>53ec5bb204ddf048ea089580f636b7b8</pop-form.jfs.image.authCode>
+        <!--组织架构-->
+        <pop.form.erp.hr.appCode>001</pop.form.erp.hr.appCode>
+        <pop.form.erp.hr.safeKey>abc123</pop.form.erp.hr.safeKey>
+        <pop.form.erp.hr.rootDeptCode>00000000</pop.form.erp.hr.rootDeptCode>
+        <!--HR 公司部门组织架构 -->
+        <pop.form.erp.hr.HrOrganizationService.alias>HR_ORGANIZATION_SERVICE_JSF</pop.form.erp.hr.HrOrganizationService.alias>
+        <!--HR 人员信息 -->
+        <pop.form.erp.hr.HrUserService.alias>HR_USER_SERVICE_JSF</pop.form.erp.hr.HrUserService.alias>
+
+        <!-- 商家中心 -->
+        <pop-vendercenter.jsf.alias>popvendercenter</pop-vendercenter.jsf.alias>
+        <pop-vendercenter.jsf.signToken>123456</pop-vendercenter.jsf.signToken>
+
+        <!-- 活动中心 -->
+        <pop-activity.jsf.alias>hd.soa.test</pop-activity.jsf.alias>
+        <!-- 结束 第五部分: 依赖的外部接口，发布时需找接口人确定 -->
+        <!-- 开始 第六部分: 提供给别人的接口，发布时需通知调用人 -->
+
+        <form.soa.jsf.alias>form-soa-${user.name}</form.soa.jsf.alias>
+        <form.soa.api.jsf.alias>form-soa-api-${user.name}</form.soa.api.jsf.alias>
+        <com.jd.jsf.timeout>60000</com.jd.jsf.timeout>
+        <!-- 结束 第六部分: 提供给别人的接口，发布时需通知调用人 -->
+        <!-- 开始 第七部分: 开发设置 -->
+        <!--记录用户登录信息的cookie名称-->
+        <!-- 单点登录cookie,需要webapp.domain.name的域名保持对应 -->
+        <sso.auth.cookie.domain>.jd.net</sso.auth.cookie.domain>
+
+        <!--可选配置，不需要登录可以访问的路径,以这个路径开头的地址不拦截，多个路径以逗号分割-->
+        <sso.exclude.path>/static,/rest</sso.exclude.path>
+
+        <!-- 应用的域名 -->
+        <!--<webapp.domain.name>form.man.jd.net</webapp.domain.name>-->
+
+        <!-- 登录地址 -->
+        <login.address>http://test.ssa.jd.com/sso/login</login.address>
+        <!-- 退出地址 -->
+        <!--<logout.address>http://test.ssa.jd.com/sso/logout?ReturnUrl=${webapp.domain.name}</logout.address>-->
+        <!-- 结束 第七部分: 开发设置 -->
+        <jsf.alias.anycall>anycall-test</jsf.alias.anycall>
+
+        <!-- 开始 第八部分: 开发框架配置，发布人修改 -->
+        <!--struts的运行模式。生产环境要改为false-->
+        <!--velocity的宏是否重新载入。生产环境要改为false-->
+        <pop-form.velocity.macro.autoreload>false</pop-form.velocity.macro.autoreload>
+        <!--velocity是否缓存-->
+        <pop-form.velocity.cache>true</pop-form.velocity.cache>
+        <!--velocity模板缓存时间-->
+        <pop-form.velocity.cache.time>10</pop-form.velocity.cache.time>
+
+
+
+        <!--文件存储的地方-->
+
+        <pop-form.excel.path>${pop-form.data.path}/excel</pop-form.excel.path>
+        <pop-form.data.path>/export/Data/pop-form.jd.local</pop-form.data.path>
+
+
+        <!-- jsf -->
+        <com.jd.jsf.check>false</com.jd.jsf.check>
+        <com.jd.jsf.lazy>false</com.jd.jsf.lazy>
+
+        <!-- jmq -->
+        <!--  <jmq:transport id="jmqTransportManager" address="${jmq.address}" user="${jmq.user}" password="${jmq.password}"
+      app="${jmq.producer.app}" epoll="${jmq.epoll}"
+      sendTimeout="${jmq.sendTimeout}" connectionTimeout="${jmq.connectionTimeout}" soTimeout="${jmq.soTimeout}"/> -->
+        <jmq.address>192.168.179.67:50088</jmq.address>
+        <jmq.user>kkong</jmq.user>
+        <jmq.password>48B17EC1</jmq.password>
+        <jmq.producer.app>kkong</jmq.producer.app>
+        <jmq.epoll>false</jmq.epoll>
+        <jmq.sendTimeout>10000</jmq.sendTimeout>
+        <jmq.connectionTimeout>10000</jmq.connectionTimeout>
+        <jmq.soTimeout>10000</jmq.soTimeout>
+        <message.jmq.distribute.open>true</message.jmq.distribute.open>
+        <message.jmq.send.open>true</message.jmq.send.open>
+        <!-- 结束 第八部分: 开发框架配置，发布人修改 -->
+      </properties>
+    </profile>
+  </profiles>
 </project>
