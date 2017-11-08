@@ -12,7 +12,7 @@ public class Medicine {
 
     private Date producedTime;
 
-    private Integer expirationTime;
+    private Date expirationTime;
 
     private Integer status;
 
@@ -50,11 +50,11 @@ public class Medicine {
         this.producedTime = producedTime;
     }
 
-    public Integer getExpirationTime() {
+    public Date getExpirationTime() {
         return expirationTime;
     }
 
-    public void setExpirationTime(Integer expirationTime) {
+    public void setExpirationTime(Date expirationTime) {
         this.expirationTime = expirationTime;
     }
 

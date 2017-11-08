@@ -111,7 +111,7 @@
       sale_num, price, create_time, 
       modify_time)
     values (#{id,jdbcType=BIGINT}, #{medicineName,jdbcType=VARCHAR}, #{producedTime,jdbcType=TIMESTAMP}, 
-      #{expirationTime,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{surplusNum,jdbcType=INTEGER}, 
+      #{expirationTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{surplusNum,jdbcType=INTEGER},
       #{saleNum,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
@@ -160,7 +160,7 @@
         #{producedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="expirationTime != null" >
-        #{expirationTime,jdbcType=INTEGER},
+        #{expirationTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -201,7 +201,7 @@
         produced_time = #{record.producedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.expirationTime != null" >
-        expiration_time = #{record.expirationTime,jdbcType=INTEGER},
+        expiration_time = #{record.expirationTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.status != null" >
         status = #{record.status,jdbcType=INTEGER},
@@ -231,7 +231,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       medicine_name = #{record.medicineName,jdbcType=VARCHAR},
       produced_time = #{record.producedTime,jdbcType=TIMESTAMP},
-      expiration_time = #{record.expirationTime,jdbcType=INTEGER},
+      expiration_time = #{record.expirationTime,jdbcType=TIMESTAMP},
       status = #{record.status,jdbcType=INTEGER},
       surplus_num = #{record.surplusNum,jdbcType=INTEGER},
       sale_num = #{record.saleNum,jdbcType=INTEGER},
@@ -252,7 +252,7 @@
         produced_time = #{producedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="expirationTime != null" >
-        expiration_time = #{expirationTime,jdbcType=INTEGER},
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -279,7 +279,7 @@
     update medicine_detail
     set medicine_name = #{medicineName,jdbcType=VARCHAR},
       produced_time = #{producedTime,jdbcType=TIMESTAMP},
-      expiration_time = #{expirationTime,jdbcType=INTEGER},
+      expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
       status = #{status,jdbcType=INTEGER},
       surplus_num = #{surplusNum,jdbcType=INTEGER},
       sale_num = #{saleNum,jdbcType=INTEGER},
