@@ -37,6 +37,7 @@
     <!-- ================================事务相关控制================================================= -->
     <!-- 对数据源进行事务管理 -->
     <!-- TransactionManager Contorl-->
+    <!-- TODO WB 因为添加了 事物得到事物类Class 的时候得到的是 一个代理对象 所以先注释掉实物配置(想办法得到代理的目标类才是根本 需要分析有哪几种代理)
     <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -50,6 +51,5 @@
             <tx:method name="*Tx" isolation="READ_COMMITTED" propagation="REQUIRED" rollback-for="Exception"/>
         </tx:attributes>
     </tx:advice>
-
-
+-->
 </beans>

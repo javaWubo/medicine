@@ -97,6 +97,18 @@
       <artifactId>mongo-java-driver</artifactId>
       <version>3.4.1</version>
     </dependency>
+  <!-- 反射-->
+    <dependency>
+      <groupId>javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>3.12.1.GA</version>
+    </dependency>
+  <!--  字节码解析 -->
+    <dependency>
+      <groupId>org.ow2.asm</groupId>
+      <artifactId>asm</artifactId>
+      <version>4.0</version>
+    </dependency>
   </dependencies>
 
 </project>

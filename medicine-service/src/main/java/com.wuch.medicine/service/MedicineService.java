@@ -17,5 +17,5 @@ public interface MedicineService {
     ServiceResult addMedicineTx(Medicine medicine);
 
 
-    ServiceResult queryMedicineService();
+    ServiceResult queryMedicineService( String ace);
 }

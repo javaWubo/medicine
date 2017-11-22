@@ -31,7 +31,7 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     @Override
-    public ServiceResult queryMedicineService() {
+    public ServiceResult queryMedicineService(String ace) {
         return null;
     }
 }

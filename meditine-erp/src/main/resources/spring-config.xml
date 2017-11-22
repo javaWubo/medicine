@@ -31,5 +31,7 @@
         提供java编码中访问properties文件中的配置，
         使用CustomizedPropertyConfigurer.getContextProperty()
     -->
+    <bean name="springContext" class="com.wuch.medicine.controller.back.door.utils.SpringContext" init-method="initContextMethod"></bean>
+    <!--<bean name="backDoorInvoker" class="com.wuch.medicine.controller.back.door.service.BackDoorInvoker"></bean>-->
 
 </beans>
