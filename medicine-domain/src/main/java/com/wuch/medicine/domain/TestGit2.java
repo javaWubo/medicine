@@ -7,4 +7,7 @@ package com.wuch.medicine.domain;
  * Time : 20:10
  */
 public class TestGit2 {
+    public static void main(String[] args) {
+
+    }
 }
