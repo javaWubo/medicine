@@ -8,6 +8,6 @@ package com.wuch.medicine.dao.common;
  */
 public class TestGit {
     public static void main(String[] args) {
-
+        System.out.println(test);
     }
 }
