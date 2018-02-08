@@ -7,8 +7,4 @@ package com.wuch.medicine.service;
  * Time : 20:10
  */
 public class TestGit3 {
-
-    public static void main(String[] args) {
-
-    }
 }

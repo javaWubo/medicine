@@ -7,7 +7,4 @@ package com.wuch.medicine.dao.common;
  * Time : 20:10
  */
 public class TestGit {
-    public static void main(String[] args) {
-
-    }
 }
